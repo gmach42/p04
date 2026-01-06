@@ -5,7 +5,7 @@ def create_archive(name: str):
     """function to create a new archive file"""
     print(f"\nInitializing new storage unit: {name}")
     try:
-        file = open(name, "x")
+        file = open(name, "w")
         print("Storage unit created successfully...")
         return file
     except FileExistsError as e:
@@ -23,6 +23,7 @@ def write_archive(file):
         print("[ENTRY 002] Efficiency increased by 347%")
         file.write("[ENTRY 003] Archived by Data Archivist trainee\n")
         print("[ENTRY 003] Archived by Data Archivist trainee")
+        print("Data inscription complete!")
     except AttributeError as e:
         return f"Error: {e}"
 
