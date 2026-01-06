@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
 
-import code
-
-
 def safe_vault_access(classified_file: str):
     """function to access the vault with 'with' statement"""
     try:
