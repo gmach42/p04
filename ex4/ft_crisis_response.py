@@ -1,38 +1,42 @@
-
-
-def handle_crisis(file):
-    try:
-        with open(file, "r") as f:
-            data = f.read()
-            if "CLASSIFIED" in data:
-                raise PermissionError("Security protocols deny access")
-            return data
-
-    except FileNotFoundError:
-        raise FileNotFoundError("Archive not found in storage matrix")
-
-
 def main():
+    """Simulates crisis response system for archive access attempts."""
     print("=== CYBER ARCHIVES - CRISIS RESPONSE SYSTEM ===\n")
-    files_to_open = [
-        "lost_archive.txt", "classified_data.txt", "standard_archive.txt"]
-    for file in files_to_open:
-        try:
-            content = handle_crisis(file)
-            print(f"ROUTINE ACCESS: Attempting access to {file}")
-            print(f"SUCCESS: Archive recovered - {content}")
-            print("STATUS: Normal operations resumed\n")
+    try:
+        file = "lost_archive.txt"
+        print(f"CRISIS ALERT: Attempting access to '{file}'...")
+        with open(file, "r") as f:
+            print("SUCCESS: Archive recovered - '", f.read(), "'")
+    except FileNotFoundError:
+        print("RESPONSE: Archive not found in storage matrix")
+    except PermissionError:
+        print("RESPONSE: Security protocols deny access")
+    finally:
+        print("STATUS: Crisis handled, system stable\n")
 
-        except Exception as e:
-            print(f"CRISIS ALERT: Attempting access to {file}")
-            print(f"RESPONSE: {e}")
-            if isinstance(e, FileNotFoundError):
-                print("STATUS: Crisis handled, system stable\n")
-            elif isinstance(e, PermissionError):
-                print("STATUS: Crisis handled, security maintained\n")
-            else:
-                print(
-                    "STATUS: Unknown error, further investigation required\n")
+    try:
+        file = "classified_vault.txt"
+        print(f"CRISIS ALERT: Attempting access to '{file}'...")
+        with open(file, "r") as f:
+            print("SUCCESS: Archive recovered - '", f.read(), "'")
+    except FileNotFoundError:
+        print("RESPONSE: Archive not found in storage matrix")
+    except PermissionError:
+        print("RESPONSE: Security protocols deny access")
+    finally:
+        print("STATUS: Crisis handled, security maintained\n")
+
+    try:
+        file = "standard_archive.txt"
+        print(f"ROUTINE ALERT: Attempting access to '{file}'...")
+        with open(file, "r") as f:
+            print("SUCCESS: Archive recovered - '", f.read(), "'")
+    except FileNotFoundError:
+        print("RESPONSE: Archive not found in storage matrix")
+    except PermissionError:
+        print("RESPONSE: Security protocols deny access")
+    finally:
+        print("STATUS: Normal operations resumed\n")
+
     print("All crisis scenarios handled successfully. Archives secure.")
 
 

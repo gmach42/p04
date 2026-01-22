@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 def main():
+    """Simulates data recovery from an ancient text file."""
     print("=== CYBER ARCHIVES - DATA RECOVERY SYSTEM ===")
     file_name: str = "ancient_fragment.txt"
     try:

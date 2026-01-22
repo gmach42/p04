@@ -1,34 +1,31 @@
 #!/usr/bin/env python3
 
-
-def safe_vault_access(classified_file: str):
-    """function to access the vault with 'with' statement"""
+def main():
+    """Simulates secure vault access and data extraction process."""
+    print("=== CYBER ARCHIVES - VAULT SECURITY SYSTEM ===\n")
     try:
         print("Initiating secure vault access...")
+        classified_file = "classified_data.txt"
+
         with open(classified_file, "r") as file:
             print("Vault connection established with failsafe protocols\n")
-        return file
+            print("SECURE EXTRACTION:")
+            print(file.read(), "")
+
+        with open(classified_file, "a") as file:
+            print("SECURE PRESERVATION:")
+            file.write("[CLASSIFIED] New security protocols archived.\n")
+            print("[CLASSIFIED] New security protocols archived.")
+        print("Vault automatically sealed after operations.\n")
+
     except FileNotFoundError:
         print("ERROR: Classified storage vault not found.")
-        return None
+    except PermissionError:
+        print("ERROR: You do not have permission to access the vault.")
+    except AttributeError:
+        print("ERROR: Invalid file operation attempted.")
 
-
-def secure_extraction(file):
-    """function to securely extract data from the vault"""
-    print("SECURE EXTRACTION:")
-    try:
-        print(file.read())
-        print("\n")
-    except AttributeError as e:
-        print(f"Error: {e}")
-
-
-def main():
-    print("=== CYBER ARCHIVES - VAULT SECURITY SYSTEM ===\n")
-    file = safe_vault_access("classified_records.txt")
-    if file is not None:
-        secure_extraction(file)
-        secure_preservation(file)
+    else:
         print("All vault operations completed with maximum security.")
 
 
